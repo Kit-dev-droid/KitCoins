@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Menubar } from 'primeng/menubar';3
+import { Menubar } from 'primeng/menubar';
 
 @Component({
   selector: 'app-menu',
@@ -19,17 +19,17 @@ export class MenuComponent {
     this.items = [
       {
         label: `Home`,
-        icon: `pi-pi-home`,
+        icon: `pi pi-home`,
          routerLink: `home`
       },
        {
         label: `Features`,
-        icon: `pi-pi-star`,
+        icon: `pi pi-star`,
         routerLink: `feature`
       },
        {
         label: `Contact`,
-        icon: `pi-pi-envelope`,
+        icon: `pi pi-envelope`,
         routerLink: `contact`
       },
     ]

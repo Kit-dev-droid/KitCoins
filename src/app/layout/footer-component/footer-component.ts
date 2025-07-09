@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [MenuModule],
   template: `
     <footer class="footer">
       <div class="footer-content">
@@ -14,10 +16,8 @@ import { Component } from '@angular/core';
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <p-menu [model]="items" styleClass="custom-vertical-menu"/>
+            
           </ul>
         </div>
         
@@ -31,10 +31,10 @@ import { Component } from '@angular/core';
         <div class="footer-section">
           <h4>Follow Us</h4>
           <div class="social-links">
-            <a href="#" class="social-link">Facebook</a>
-            <a href="#" class="social-link">Twitter</a>
-            <a href="#" class="social-link">LinkedIn</a>
-            <a href="#" class="social-link">Instagram</a>
+            <a href="https://www.facebook.com" target="_blank" class="social-link">Facebook</a>
+            <a href="https://x.com" target="_blank" class="social-link">Twitter</a>
+            <a href="https://www.linkedin.com" target="_blank" class="social-link" >LinkedIn</a>
+            <a href="https://www.instagram.com" target="_blank" class="social-link">Instagram</a>
           </div>
         </div>
       </div>
@@ -45,6 +45,26 @@ import { Component } from '@angular/core';
     </footer>
   `,
   styles: [`
+    ::ng-deep .custom-vertical-menu {
+      border: none !important;
+      width: 200px; 
+      margin: auto;
+      padding-left: 50px;
+
+    }
+
+    ::ng-deep .custom-vertical-menu .p-menuitem-link {
+      padding: 10px;
+      color: #333;
+      border-radius: 0;
+      transition: background-color 0.2s;
+      
+    }
+
+    ::ng-deep .custom-vertical-menu .p-menuitem-link:hover {
+      background-color: #f0f0f0;
+     
+    }
     .footer {
       background-color: white;
       color: #333;
@@ -110,6 +130,7 @@ import { Component } from '@angular/core';
       display: flex;
       gap: 15px;
       flex-wrap: wrap;
+      justify-content: center; /* ✅ This is missing outside of media query */
     }
     
     .social-link {
@@ -120,6 +141,9 @@ import { Component } from '@angular/core';
       border-radius: 4px;
       transition: all 0.3s;
       background-color: #f9f9f9;
+      flex: 1 1 100px; /* ✅ All links grow/shrink equally with a min width */
+      max-width: 150px;
+      text-align: center;
     }
     
     .social-link:hover {
@@ -149,7 +173,9 @@ import { Component } from '@angular/core';
       }
       
       .social-links {
+        display: flex;
         justify-content: center;
+        gap: 15px;
       }
     }
   `]
@@ -162,5 +188,27 @@ export class FooterComponent {
   contactPhone = "073 007 0025";
   contactEmail = "kyle.kitchener@outlook.com";
   companyDescription = "A coin currency tracking site";
+  footerItem = [];
+  items: MenuItem[] | undefined;
+
+  ngOnInit() {
+    this.items = [
+      {
+        label: `Home`,
+        icon: `pi-pi-home`,
+        routerLink: `home`
+      },
+      {
+        label: `Features`,
+        icon: `pi-pi-star`,
+        routerLink: `feature`
+      },
+      {
+        label: `Contact`,
+        icon: `pi-pi-envelope`,
+        routerLink: `contact`
+      },
+    ]
+  }
 
 }
