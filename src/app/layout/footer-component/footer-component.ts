@@ -45,34 +45,35 @@ import { MenuModule } from 'primeng/menu';
     </footer>
   `,
   styles: [`
+
     ::ng-deep .custom-vertical-menu {
       border: none !important;
       width: 200px; 
       margin: auto;
-      padding-left: 50px;
-
+    }
+    ::ng-deep .custom-vertical-menu.p-menu {
+      background: transparent !important;
     }
 
-    ::ng-deep .custom-vertical-menu .p-menuitem-link {
-      padding: 10px;
-      color: #333;
+    ::ng-deep .custom-vertical-menu .p-menu-item-content {
+      display: flex !important;
+      justify-content: center !important;
+    }
+
+    ::ng-deep .custom-vertical-menu .p-menu-item-link {
+      padding: 10px 0;
       border-radius: 0;
       transition: background-color 0.2s;
-      
+      width: 100%;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
     }
 
-    ::ng-deep .custom-vertical-menu .p-menuitem-link:hover {
-      background-color: #f0f0f0;
-     
-    }
     .footer {
-      background-color: white;
-      color: #333;
       padding: 40px 0 20px;
       margin-top: auto;
-      
       left: 0;
-     
       width: 100%;
       text-align: center;
       border-top: 2px solid #e0e0e0;
@@ -90,19 +91,16 @@ import { MenuModule } from 'primeng/menu';
     }
     
     .footer-section h3 {
-      color: #333;
       margin-bottom: 15px;
       font-size: 1.5rem;
     }
     
     .footer-section h4 {
-      color: #333;
       margin-bottom: 15px;
       font-size: 1.1rem;
     }
     
     .footer-section p {
-      color: #666;
       line-height: 1.6;
       margin-bottom: 10px;
     }
@@ -117,39 +115,34 @@ import { MenuModule } from 'primeng/menu';
     }
     
     .footer-section ul li a {
-      color: #666;
       text-decoration: none;
       transition: color 0.3s;
     }
     
     .footer-section ul li a:hover {
-      color: #333;
+      opacity: 0.8;
     }
     
     .social-links {
       display: flex;
       gap: 15px;
       flex-wrap: wrap;
-      justify-content: center; /* ✅ This is missing outside of media query */
+      justify-content: center; 
     }
     
     .social-link {
-      color: #666;
       text-decoration: none;
       padding: 8px 12px;
       border: 1px solid #ddd;
       border-radius: 4px;
       transition: all 0.3s;
-      background-color: #f9f9f9;
-      flex: 1 1 100px; /* ✅ All links grow/shrink equally with a min width */
+      flex: 1 1 100px; 
       max-width: 150px;
       text-align: center;
     }
     
     .social-link:hover {
-      color: #333;
-      border-color: #333;
-      background-color: #e9e9e9;
+      opacity: 0.8;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     
@@ -161,7 +154,6 @@ import { MenuModule } from 'primeng/menu';
     }
     
     .footer-bottom p {
-      color: #666;
       margin: 0;
       font-size: 0.9rem;
     }
@@ -195,17 +187,14 @@ export class FooterComponent {
     this.items = [
       {
         label: `Home`,
-        icon: `pi-pi-home`,
         routerLink: `home`
       },
       {
         label: `Features`,
-        icon: `pi-pi-star`,
         routerLink: `feature`
       },
       {
         label: `Contact`,
-        icon: `pi-pi-envelope`,
         routerLink: `contact`
       },
     ]

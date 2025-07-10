@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Menubar } from 'primeng/menubar';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-menu',
-  imports: [Menubar],
+  imports: [Menubar,ButtonModule],
   template: `
-    <div class="card">
-        <p-menubar [model]="items" />
+    <div>
+        <p-menubar [model]="items">
+          <p-button icon="pi pi-moon" [rounded]="true" (onClick)="toggleDarkMode()"variant="text" [raised]="true" />
+        </p-menubar>
     </div>
   `,
   styles: ``
@@ -34,5 +37,12 @@ export class MenuComponent {
       },
     ]
   }
+
+  toggleDarkMode() {
+    const element = document.querySelector('html');
+    if (element) {
+        element.classList.toggle('my-app-dark');
+    }
+}
 
 }
