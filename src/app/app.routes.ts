@@ -14,6 +14,11 @@ export const routes: Routes = [
         loadComponent: () => import('./home/contact-component/contact-component').then(m => m.ContactComponent)
     },
     {
+        path: 'registration',
+        loadComponent: () => import('./home/registration-component/registration-component').then(m => m.RegistrationComponent)
+        
+    },
+    {
         path: '',
         redirectTo: "home",
         pathMatch: 'full',
