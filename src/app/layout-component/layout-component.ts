@@ -10,7 +10,7 @@ import { FooterComponent } from "../layout/footer-component/footer-component";
   <app-menu></app-menu>
   <router-outlet />
   <app-footer></app-footer>
-    
+  
   `,
   styles: ``
 })

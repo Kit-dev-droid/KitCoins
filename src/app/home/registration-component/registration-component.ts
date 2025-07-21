@@ -8,7 +8,7 @@ import { PasswordModule } from 'primeng/password';
   imports: [FormsModule,PasswordModule],
 template: `
   <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem;">
-    <div style="width: 100%; max-width: 400px;">
+    <div style="width: 100%; max-width: 400px;" >
       <form class="registration-form">
         <div style="text-align: center; margin-bottom: 2rem;">
           <h2 class="form-title">Create Account</h2>
@@ -63,6 +63,7 @@ template: `
           <p-password 
             [(ngModel)]="confirmPass" 
             name="confirmPass"
+            [feedback]="false"
             placeholder="Confirm Password"
             styleClass="form-password"
           />
@@ -78,13 +79,14 @@ template: `
   </div>
 `,
   styles: `
+
   .registration-form {
   padding: 2rem;
   border-radius: 8px;
   background: var(--surface-card, #ffffff);
   color: var(--text-color, #495057);
   border: 1px solid var(--surface-border, #dee2e6);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow:  0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-title {
