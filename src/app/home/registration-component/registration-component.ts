@@ -5,209 +5,131 @@ import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-registration',
-  imports: [FormsModule,PasswordModule],
-template: `
-  <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem;">
-    <div style="width: 100%; max-width: 400px;" >
-      <form class="registration-form">
-        <div style="text-align: center; margin-bottom: 2rem;">
-          <h2 class="form-title">Create Account</h2>
-        </div>
-        
-        <div style="margin-bottom: 1.5rem;">
-          <input 
-            pInputText 
-            id="name" 
-            name="name"
-            aria-describedby="name-help" 
-            [(ngModel)]="name" 
-            placeholder="Name"
-            class="form-input"
-          />
-        </div>
-        
-        <div style="margin-bottom: 1.5rem;">
-          <input 
-            pInputText 
-            id="surname" 
-            name="surname"
-            aria-describedby="surname-help" 
-            [(ngModel)]="surname" 
-            placeholder="Surname"
-            class="form-input"
-          />
-        </div>
-        
-        <div style="margin-bottom: 1.5rem;">
-          <input 
-            type="email" 
-            pInputText 
-            name="email"
-            [(ngModel)]="email" 
-            placeholder="Email"
-            class="form-input"
-          />
-        </div>
-        
-        <div style="margin-bottom: 1.5rem;">
-          <p-password 
-            [(ngModel)]="password" 
-            name="password"
-            [toggleMask]="true" 
-            placeholder="Password"
-            styleClass="form-password"
-          />
-        </div>
-        
-        <div style="margin-bottom: 2rem;">
-          <p-password 
-            [(ngModel)]="confirmPass" 
-            name="confirmPass"
-            [feedback]="false"
-            placeholder="Confirm Password"
-            styleClass="form-password"
-          />
-        </div>
-        
-        <div>
-          <button type="submit" class="submit-button">
-            Create Account
-          </button>
-        </div>
-      </form>
+  imports: [FormsModule, PasswordModule],
+  template: `
+    <div class="min-h-screen flex items-center justify-center p-4">
+      <div class="w-full max-w-md">
+        <form class="registration-form bg-white dark:bg-gray-800 p-8 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md dark:shadow-gray-900/30">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Create Account</h2>
+          </div>
+          
+          <div class="mb-6">
+            <input 
+              pInputText 
+              id="name" 
+              name="name"
+              aria-describedby="name-help" 
+              [(ngModel)]="name" 
+              placeholder="Name"
+              class="form-input w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
+            />
+          </div>
+          
+          <div class="mb-6">
+            <input 
+              pInputText 
+              id="surname" 
+              name="surname"
+              aria-describedby="surname-help" 
+              [(ngModel)]="surname" 
+              placeholder="Surname"
+              class="form-input w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
+            />
+          </div>
+          
+          <div class="mb-6">
+            <input 
+              type="email" 
+              pInputText 
+              name="email"
+              [(ngModel)]="email" 
+              placeholder="Email"
+              class="form-input w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
+            />
+          </div>
+          
+          <div class="mb-6">
+            <p-password 
+              [(ngModel)]="password" 
+              name="password"
+              [toggleMask]="true" 
+              placeholder="Password"
+              styleClass="form-password"
+            />
+          </div>
+          
+          <div class="mb-8">
+            <p-password 
+              [(ngModel)]="confirmPass" 
+              name="confirmPass"
+              [feedback]="false"
+              placeholder="Confirm Password"
+              styleClass="form-password"
+            />
+          </div>
+          
+          <div>
+            <button 
+              type="submit" 
+              class="w-full px-3 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded text-base font-medium cursor-pointer transition-colors duration-200"
+            >
+              Create Account
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-`,
+  `,
   styles: `
+    /* PrimeNG Password Component Styles */
+    ::ng-deep .form-password {
+      width: 100% !important;
+    }
 
-  .registration-form {
-  padding: 2rem;
-  border-radius: 8px;
-  background: var(--surface-card, #ffffff);
-  color: var(--text-color, #495057);
-  border: 1px solid var(--surface-border, #dee2e6);
-  box-shadow:  0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    ::ng-deep .form-password .p-password {
+      width: 100% !important;
+    }
 
-.form-title {
-  color: var(--text-color, #495057);
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
+    ::ng-deep .form-password .p-inputtext {
+      width: 100% !important;
+      padding: 0.75rem !important;
+      border: 1px solid rgb(209 213 219) !important;
+      border-radius: 0.25rem !important;
+      font-size: 1rem !important;
+      background: rgb(255 255 255) !important;
+      color: rgb(17 24 39) !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
 
-.form-input {
-  width: 100% !important;
-  padding: 0.75rem !important;
-  border: 1px solid var(--surface-border, #dee2e6) !important;
-  border-radius: 4px !important;
-  font-size: 1rem !important;
-  background: var(--surface-ground, #ffffff) !important;
-  color: var(--text-color, #495057) !important;
-  transition: border-color 0.2s, box-shadow 0.2s !important;
-}
+    ::ng-deep .form-password .p-inputtext:focus {
+      border-color: rgb(59 130 246) !important;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25) !important;
+      outline: none !important;
+    }
 
-.form-input:focus {
-  border-color: var(--primary-color, #007bff) !important;
-  box-shadow: 0 0 0 2px var(--primary-color-text, rgba(0, 123, 255, 0.25)) !important;
-  outline: none !important;
-}
+    ::ng-deep .form-password .p-password-toggle {
+      color: rgb(107 114 128) !important;
+    }
 
-.submit-button {
-  width: 100%;
-  padding: 0.75rem;
-  background: var(--primary-color, #007bff);
-  color: var(--primary-color-text, white);
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.submit-button:hover {
-  background: var(--primary-color-hover, #0056b3);
-}
-
-.submit-button:active {
-  background: var(--primary-color-active, #004085);
-}
-
-/* PrimeNG Password Component Styles */
-::ng-deep .form-password {
-  width: 100% !important;
-}
-
-::ng-deep .form-password .p-password {
-  width: 100% !important;
-}
-
-::ng-deep .form-password .p-inputtext {
-  width: 100% !important;
-  padding: 0.75rem !important;
-  border: 1px solid var(--surface-border, #dee2e6) !important;
-  border-radius: 4px !important;
-  font-size: 1rem !important;
-  background: var(--surface-ground, #ffffff) !important;
-  color: var(--text-color, #495057) !important;
-  transition: border-color 0.2s, box-shadow 0.2s !important;
-}
-
-::ng-deep .form-password .p-inputtext:focus {
-  border-color: var(--primary-color, #007bff) !important;
-  box-shadow: 0 0 0 2px var(--primary-color-text, rgba(0, 123, 255, 0.25)) !important;
-}
-
-::ng-deep .form-password .p-password-toggle {
-  color: var(--text-color, #495057) !important;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .registration-form {
-    background: #1f2937;
-    color: #f9fafb;
-    border-color: #374151;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  }
-  
-  .form-title {
-    color: #f9fafb;
-  }
-  
-  .form-input {
-    background: #374151 !important;
-    color: #f9fafb !important;
-    border-color: #4b5563 !important;
-  }
-  
-  .form-input:focus {
-    border-color: #60a5fa !important;
-    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25) !important;
-  }
-  
-  .submit-button {
-    background: #3b82f6;
-  }
-  
-  .submit-button:hover {
-    background: #2563eb;
-  }
-  
-  ::ng-deep .form-password .p-inputtext {
-    background: #374151 !important;
-    color: #f9fafb !important;
-    border-color: #4b5563 !important;
-  }
-  
-  ::ng-deep .form-password .p-inputtext:focus {
-    border-color: #60a5fa !important;
-    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25) !important;
-  }
-  
-  
-}`
+    /* Dark mode support for PrimeNG components */
+    @media (prefers-color-scheme: dark) {
+      ::ng-deep .form-password .p-inputtext {
+        background: rgb(55 65 81) !important;
+        color: rgb(249 250 251) !important;
+        border-color: rgb(75 85 99) !important;
+      }
+      
+      ::ng-deep .form-password .p-inputtext:focus {
+        border-color: rgb(96 165 250) !important;
+        box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25) !important;
+      }
+      
+      ::ng-deep .form-password .p-password-toggle {
+        color: rgb(156 163 175) !important;
+      }
+    }
+  `
 })
 
 export class RegistrationComponent {

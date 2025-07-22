@@ -6,51 +6,62 @@ import { MenuModule } from 'primeng/menu';
   selector: 'app-footer',
   imports: [MenuModule],
   template: `
-    <footer class="footer">
-      <div class="footer-content">
+    <footer class="mt-auto w-full text-center border-t-2 border-gray-200 shadow-[0_-4px_8px_rgba(0,0,0,0.1)] z-[1000] pt-10 pb-5">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5">
         <div class="footer-section">
-          <h3>{{ companyName }}</h3>
-          <p>{{ companyDescription }}</p>
+          <h3 class="mb-4 text-2xl font-semibold">{{ companyName }}</h3>
+          <p class="leading-relaxed mb-3">{{ companyDescription }}</p>
         </div>
         
         <div class="footer-section">
-          <h4>Quick Links</h4>
-          <ul>
+          <h4 class="mb-4 text-lg font-medium">Quick Links</h4>
+          <div class="flex justify-center">
             <p-menu [model]="items" styleClass="custom-vertical-menu"/>
-            
-          </ul>
+          </div>
         </div>
         
         <div class="footer-section">
-          <h4>Contact Info</h4>
-          <p>Email: {{ contactEmail }}</p>
-          <p>Phone: {{ contactPhone }}</p>
-          <p>Address: {{ contactAddress }}</p>
+          <h4 class="mb-4 text-lg font-medium">Contact Info</h4>
+          <p class="leading-relaxed mb-3">Email: {{ contactEmail }}</p>
+          <p class="leading-relaxed mb-3">Phone: {{ contactPhone }}</p>
+          <p class="leading-relaxed mb-3">Address: {{ contactAddress }}</p>
         </div>
         
         <div class="footer-section">
-          <h4>Follow Us</h4>
-          <div class="social-links">
-            <a href="https://www.facebook.com" target="_blank" class="social-link">Facebook</a>
-            <a href="https://x.com" target="_blank" class="social-link">Twitter</a>
-            <a href="https://www.linkedin.com" target="_blank" class="social-link" >LinkedIn</a>
-            <a href="https://www.instagram.com" target="_blank" class="social-link">Instagram</a>
+          <h4 class="mb-4 text-lg font-medium">Follow Us</h4>
+          <div class="flex gap-4 flex-wrap justify-center">
+            <a href="https://www.facebook.com" target="_blank" 
+               class="no-underline py-2 px-3 border border-gray-300 rounded text-center transition-all duration-300 flex-1 min-w-[100px] max-w-[150px] hover:opacity-80 hover:shadow-md">
+               Facebook
+            </a>
+            <a href="https://x.com" target="_blank" 
+               class="no-underline py-2 px-3 border border-gray-300 rounded text-center transition-all duration-300 flex-1 min-w-[100px] max-w-[150px] hover:opacity-80 hover:shadow-md">
+               Twitter
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" 
+               class="no-underline py-2 px-3 border border-gray-300 rounded text-center transition-all duration-300 flex-1 min-w-[100px] max-w-[150px] hover:opacity-80 hover:shadow-md">
+               LinkedIn
+            </a>
+            <a href="https://www.instagram.com" target="_blank" 
+               class="no-underline py-2 px-3 border border-gray-300 rounded text-center transition-all duration-300 flex-1 min-w-[100px] max-w-[150px] hover:opacity-80 hover:shadow-md">
+               Instagram
+            </a>
           </div>
         </div>
       </div>
       
-      <div class="footer-bottom">
-        <p>&copy; {{ currentYear }} {{ companyName }}. All rights reserved.</p>
+      <div class="text-center pt-5 mt-8 border-t border-gray-300">
+        <p class="m-0 text-sm">&copy; {{ currentYear }} {{ companyName }}. All rights reserved.</p>
       </div>
     </footer>
   `,
   styles: [`
-
     ::ng-deep .custom-vertical-menu {
       border: none !important;
       width: 200px; 
       margin: auto;
     }
+    
     ::ng-deep .custom-vertical-menu.p-menu {
       background: transparent !important;
     }
@@ -68,107 +79,6 @@ import { MenuModule } from 'primeng/menu';
       display: flex !important;
       justify-content: center !important;
       align-items: center !important;
-    }
-
-    .footer {
-      padding: 40px 0 20px;
-      margin-top: auto;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      border-top: 2px solid #e0e0e0;
-      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-    }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      padding: 0 20px;
-    }
-    
-    .footer-section h3 {
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-    }
-    
-    .footer-section h4 {
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
-    
-    .footer-section p {
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
-    
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .footer-section ul li {
-      margin-bottom: 8px;
-    }
-    
-    .footer-section ul li a {
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .footer-section ul li a:hover {
-      opacity: 0.8;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center; 
-    }
-    
-    .social-link {
-      text-decoration: none;
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      transition: all 0.3s;
-      flex: 1 1 100px; 
-      max-width: 150px;
-      text-align: center;
-    }
-    
-    .social-link:hover {
-      opacity: 0.8;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .footer-bottom {
-      text-align: center;
-      padding-top: 20px;
-      margin-top: 30px;
-      border-top: 1px solid #ddd;
-    }
-    
-    .footer-bottom p {
-      margin: 0;
-      font-size: 0.9rem;
-    }
-    
-    @media (max-width: 768px) {
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      
-      .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-      }
     }
   `]
 })
