@@ -45,6 +45,16 @@ export class MenuComponent implements OnInit {
         icon: `pi pi-envelope`,
         routerLink: `contact`
       },
+      {
+        label: `Registration`,
+        icon: `pi pi-envelope`,
+        routerLink: `registration`
+      },
+      {
+        label: `Login`,
+        icon: `pi pi-envelope`,
+        routerLink: `login`
+      },
     ]
   }
 
