@@ -5,6 +5,7 @@ import { PasswordModule } from 'primeng/password';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -51,14 +52,17 @@ import { ButtonModule } from 'primeng/button';
                   styleClass="w-full login-button login-success-button"
                 />
               </div>
+
               <div class="flex-1">
                 <p-button 
                   label="Register" 
+                  (onClick)="navigateToPath() "
                   [raised]="true" 
                   severity="info"
                   styleClass="w-full login-button login-info-button"
                 />
               </div>
+              
             </div>
           </form>
         </div>
@@ -155,6 +159,14 @@ export class LoginComponent {
   name = '';
   isInvalid: any;
   value!: string;
+
+  constructor(private router: Router){}
+
+
+  navigateToPath() {
+    this.router.navigate(['/registration']); // Or this.router.navigateByUrl('/your-path');
+  }
+
 
 
 }
