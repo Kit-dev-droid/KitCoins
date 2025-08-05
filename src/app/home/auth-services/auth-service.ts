@@ -22,7 +22,7 @@ export interface RegisterResponse {
 })
 export class AuthService {
   // need to set up the login api next
-  private apiUrl = 'http://localhost/kitCoinsApi';
+  private apiUrl = 'http://localhost/kitCoinsApi/';
 
   constructor(private http: HttpClient) { }
 
@@ -38,7 +38,7 @@ export class AuthService {
 
     // Make POST request to registration endpoint
     return this.http.post<RegisterResponse>(
-      `${this.apiUrl}/register`, 
+      `${this.apiUrl}`, 
       userData, 
       { headers }
     );
