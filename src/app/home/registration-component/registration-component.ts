@@ -9,11 +9,13 @@ import { ButtonModule } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { Ripple } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
-
+import { AuthService } from '../auth-services/auth-service';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
-   imports: [FormsModule, PasswordModule, MessageModule, ToastModule, ButtonModule, Toast, Ripple, AvatarModule],
+   imports: [FormsModule, PasswordModule, MessageModule, ToastModule, ButtonModule, Toast, Ripple, AvatarModule, CommonModule, FormsModule, HttpClientModule],
    providers: [MessageService],
   template: `
     <div class="min-h-screen flex items-center justify-center p-4">
@@ -199,15 +201,20 @@ import { AvatarModule } from 'primeng/avatar';
 })
 
 export class RegistrationComponent {
-   constructor(private messageService: MessageService) {}
+
+  constructor(
+    private messageService: MessageService,
+    private authService: AuthService
+  ) {}
+
    visible: boolean = false;
-//  messageService = inject(MessageService);
+
   name = "";
   surname = "";
   email = "";
   password = "";
   confirmPass = "";
-
+  
  
   
 
@@ -215,29 +222,54 @@ export class RegistrationComponent {
 
     if (form.valid) {
         
-        if(this.password !== this.confirmPass){
-            this.messageService.add({ 
-                key: 'b',
-                severity: 'error', 
-                summary: 'Error', 
-                detail: 'Passwords do not match', 
-                life: 3000 
+      if(this.password !== this.confirmPass){
+          this.messageService.add({ 
+              key: 'b',
+              severity: 'error', 
+              summary: 'Error', 
+              detail: 'Passwords do not match', 
+              life: 3000 
+          });
+          
+          return; 
+      }
+
+      const payload = {
+        name: this.name,
+        surname: this.surname,
+        email: this.email,
+        password: this.password
+      }
+      
+      this.authService.register(payload).subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.messageService.add({
+              severity: 'success',
+              summary: "Registration Successfull",
+              detail: res.message || "User registered successfully",
+              life: 3000
             });
-            
-            return; 
+            form.resetForm();
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: "Registration Failed",
+              detail: res.message || "An error occured during registration",
+              life: 3000
+            });
+          }
+        },
+        error: (err) => {
+          console.error("API Error", err);
+          this.messageService.add({
+            severity: "error",
+            summary: "Api Error",
+            detail: "Something went wrong please try again later",
+            life: 3000
+          });
         }
-        
-        
-        this.messageService.add({ 
-           
-            severity: 'success', 
-            summary: 'Success', 
-            detail: 'Form Submitted', 
-            life: 3000 
-        });
-        form.resetForm();
+      });
     }
   }
-
-
 }

@@ -21,8 +21,8 @@ export interface RegisterResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  // Replace this with your actual API base URL
-  private apiUrl = 'https://your-api-domain.com/api';
+  // need to set up the login api next
+  private apiUrl = 'http://localhost/kitCoinsApi';
 
   constructor(private http: HttpClient) { }
 
@@ -38,22 +38,20 @@ export class AuthService {
 
     // Make POST request to registration endpoint
     return this.http.post<RegisterResponse>(
-      `${this.apiUrl}/auth/register`, 
+      `${this.apiUrl}/register`, 
       userData, 
       { headers }
     );
   }
 
-  /**
-   * Optional: Login method for future use
-   */
+  //login functionality 
   login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
     return this.http.post<any>(
-      `${this.apiUrl}/auth/login`,
+      `${this.apiUrl}/login`,
       { email, password },
       { headers }
     );
