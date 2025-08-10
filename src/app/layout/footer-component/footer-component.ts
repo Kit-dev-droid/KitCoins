@@ -7,7 +7,7 @@ import { MenuModule } from 'primeng/menu';
   imports: [MenuModule],
   template: `
     <footer class="mt-auto w-full text-center border-t-2 border-gray-200 shadow-[0_-4px_8px_rgba(0,0,0,0.1)] z-[1000] pt-10 pb-5">
-      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5">
+      <div  class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5">
         <div class="footer-section">
           <h3 class="mb-4 text-2xl font-semibold">{{ companyName }}</h3>
           <p class="leading-relaxed mb-3">{{ companyDescription }}</p>

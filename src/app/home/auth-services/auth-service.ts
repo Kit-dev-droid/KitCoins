@@ -38,7 +38,7 @@ export class AuthService {
 
     // Make POST request to registration endpoint
     return this.http.post<RegisterResponse>(
-      `${this.apiUrl}`, 
+      `${this.apiUrl}register.php`, 
       userData, 
       { headers }
     );
