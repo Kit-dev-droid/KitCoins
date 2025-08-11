@@ -1,0 +1,29 @@
+/*primeNG text inputs*/
+.my-app-dark input[pInputText] {
+  background-color:  #1f2937 !important;
+ 
+  border-color: #4b5563 !important;
+  color: white !important;
+}
+
+.my-app-dark body {
+    
+    background-color: #121212;
+    
+}
+
+.my-app-dark #my-standout-modal {
+   background-color:  #111827!important;
+   outline: 1px solid grey;
+}
+
+
+.my-app-dark .p-dropdown {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+  color: white !important;
+}
+
+ h3 .my-app-dark{
+  color: white !important;
+}

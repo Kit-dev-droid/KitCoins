@@ -1,8 +1,19 @@
 @import "primeicons/primeicons.css";
+@import "styles/dark-theme.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @custom-variant dark (&:where(.my-app-dark, .my-app-dark *));
+
+
+
+
+/*--------------dark mode theme has its own styles folder this folder is only for light mode styles----------------------*/
+
+
+#my-standout-modal {
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
