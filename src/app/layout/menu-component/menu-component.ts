@@ -9,8 +9,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-menu',
   imports: [Menubar, ButtonModule, CommonModule],
   template: `
-    <div>
-        <p-menubar [model]="items">
+    <div class = "my-standout-menu">
+        <p-menubar [model]="items"  >
           <p-button 
             [icon]="(themeService.darkMode$ | async) ? 'pi pi-sun' : 'pi pi-moon'" 
             [rounded]="true" 
