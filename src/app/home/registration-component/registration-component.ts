@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <div  class="min-h-screen flex items-center justify-center p-4">
       <div id='my-standout-modal' class="w-full max-w-md">
-        <form  #register="ngForm" (ngSubmit)="onSubmit(register)" class="registration-form p-8 rounded-lg border border-gray-200 ">
+        <form  #register="ngForm" (ngSubmit)="onSubmit(register)" class="registration-form p-8 border-gray-200 ">
           <div class="text-center mb-8">
             <h2 class="text-2xl font-semibold ">Create Account</h2>
           </div>
@@ -59,7 +59,7 @@ import { CommonModule } from '@angular/common';
               aria-describedby="surname-help" 
               [(ngModel)]="surname" 
               placeholder="Surname"
-              class="form-input w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
+              class="form-input w-full px-3 py-3 border border-gray-300  rounded bg-white text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
             />
              @if (surnameField.invalid && (surnameField.touched || register.submitted)) {
               <p-message severity="error" size="small" variant="simple">
@@ -85,7 +85,7 @@ import { CommonModule } from '@angular/common';
               
               [(ngModel)]="email" 
               placeholder="Email"
-              class="form-input w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
+              class="form-input w-full px-3 py-3 border border-gray-300 rounded bg-white  text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
             />
             @if (emailField.invalid && (emailField.touched || register.submitted)) {
               <p-message severity="error" size="small" variant="simple">
@@ -106,7 +106,6 @@ import { CommonModule } from '@angular/common';
               name="password"
               [toggleMask]="true" 
               placeholder="Password"
-              styleClass="form-password"
               [invalid]="passwordModel.invalid && (passwordModel.touched || register.submitted)" 
               name="password" [feedback]="false" 
               autocomplete="off" 
@@ -139,9 +138,10 @@ import { CommonModule } from '@angular/common';
             <button 
               type="submit" 
               pRipple 
-              severity="warn"
+              severity="info"
               class="w-full px-3 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded text-base font-medium cursor-pointer transition-colors duration-200"
-            >
+              
+              >
               Create Account
             </button>
           </div>
@@ -151,11 +151,6 @@ import { CommonModule } from '@angular/common';
   `,
   styles: `
     /* PrimeNG Password Component Styles */
-    ::ng-deep .form-password {
-      width: 100% !important;
-    }
-    
-
     ::ng-deep .form-password .p-password {
       width: 100% !important;
     }

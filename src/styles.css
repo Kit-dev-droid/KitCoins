@@ -1,4 +1,5 @@
 @import "primeicons/primeicons.css";
+@import "styles/dark-theme.css";
 
 @tailwind base;
 @tailwind components;
@@ -6,30 +7,13 @@
 
 @custom-variant dark (&:where(.my-app-dark, .my-app-dark *));
 
-/* Global PrimeNG Dark Mode Styles */
-
-/*primeNG text inputs*/
-.my-app-dark input[pInputText] {
-  background-color:  #1f2937 !important;
- 
-  border-color: #4b5563 !important;
-  color: white !important;
-}
-
-.my-app-dark body {
-    
-    background-color: #121212;
-    
-}
-
-.my-app-dark #my-standout-modal {
-   background-color:  #111827!important;
-   
-}
 
 
-.my-app-dark .p-dropdown {
-  background-color: #1f2937 !important;
-  border-color: #4b5563 !important;
-  color: white !important;
+
+/*--------------dark mode theme has its own styles folder this folder is only for light mode styles----------------------*/
+
+
+#my-standout-modal {
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

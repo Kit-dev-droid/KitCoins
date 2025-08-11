@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   template: `
     <div class="min-h-screen flex items-center justify-center p-4">
       <div id='my-standout-modal' class="w-full max-w-md">
-        <div class=" dark:bg-gray-800 p-8 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md dark:shadow-gray-900/30">
+        <div class="p-8  ">
           <div class="text-center mb-8">
             <h3 class="text-2xl font-semibold ">Please Login</h3>
           </div>
@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
             <div class="mb-6">
                <div class="flex flex-col gap-1">
                 <input 
-                  class="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-white" 
+                  class="w-full px-3 py-3 border border-gray-300 rounded-lg text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none bg-white  text-gray-900 " 
                   pInputText 
                   id="username" 
                   aria-describedby="username-help" 
@@ -76,26 +76,6 @@ import { Router } from '@angular/router';
     ::ng-deep .login-password-field .p-inputtext {
     width: 100% !important;
   }
-
-  ::ng-deep .my-app-dark input[pInputText] {
-    background-color: #1f2937 !important;
-    border-color: #4b5563 !important;
-    color: white !important;
-  }
-
- 
-    h3 .my-app-dark{
-      color: white !important;
-    }
-
-   
-
-   
-  
-
-   
-
-
    
   `
 })
