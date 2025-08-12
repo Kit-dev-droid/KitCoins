@@ -9,13 +9,12 @@ import { ButtonModule } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { Ripple } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
-import { AuthService } from '../auth-services/auth-service';
-import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../auth-services/registration/auth-service-registration';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
-   imports: [FormsModule, PasswordModule, MessageModule, ToastModule, ButtonModule, Toast, Ripple, AvatarModule, CommonModule, FormsModule, HttpClientModule],
+   imports: [FormsModule, PasswordModule, MessageModule, ToastModule, ButtonModule, Toast, Ripple, AvatarModule, CommonModule, FormsModule],
    providers: [MessageService],
   template: `
     <div  class="min-h-screen flex items-center justify-center p-4">
