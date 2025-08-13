@@ -9,7 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { Ripple } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
-import { AuthService } from '../auth-services/registration/auth-service-registration';
+import { AuthService } from '../auth-services/auth-service';
 import { CommonModule } from '@angular/common';
 
 @Component({

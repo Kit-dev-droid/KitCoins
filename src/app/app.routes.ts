@@ -20,7 +20,7 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        loadComponent: () => import('./home/login-component/login-component').then(m => m.LoginComponent)
+        loadComponent: () => import('./home/auth-services/login-component').then(m => m.LoginComponent)
         
     },
     {
