@@ -100,7 +100,7 @@ import { CommonModule } from '@angular/common';
           
           <div class="mb-8">
             <p-password  
-              registrationForm="confirmPassword"
+              formControlName="confirmPassword"
               [feedback]="false"
               placeholder="Confirm Password"
               [invalid]="registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched"
