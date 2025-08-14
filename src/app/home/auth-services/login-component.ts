@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { MessageModule } from "primeng/message";
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   standalone: true,
   imports: [
-    FormsModule, 
+    ReactiveFormsModule, 
     InputTextModule,
     PasswordModule, 
     MessageModule, 
@@ -34,23 +34,21 @@ import { Router } from '@angular/router';
             <h3 class="text-2xl font-semibold">Please Login</h3>
           </div>
           
-          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+          <form [formGroup]="loginForm"  (ngSubmit)="onSubmit()">
             <div class="mb-6">
                <div class="flex flex-col gap-1">
                 <input 
                   class="w-full px-3 py-3 border border-gray-300 rounded-lg text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none bg-white text-gray-900" 
                   pInputText 
                   id="username" 
-                  #nameField="ngModel"
                   aria-describedby="username-help" 
-                  name="userName" 
-                  [(ngModel)]="name" 
+                  formControlName="userName" 
                   placeholder="Username"
                   required
                 />
-                 @if (nameField.invalid && (nameField.touched || nameField.dirty)) {
+                 @if (loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched) {
                   <p-message severity="error" size="small" variant="simple">
-                    @if (nameField.hasError('required')) {
+                    @if (loginForm.get('userName')?.hasError('required')) {
                         UserName is Required.
                     }
                   </p-message>
@@ -61,17 +59,17 @@ import { Router } from '@angular/router';
             <div class="mb-8">
               <p-password 
                 class="login-password w-full"
-                [(ngModel)]="password" 
+
                 [feedback]="false" 
-                name="password" 
-                #passwordField="ngModel"
+                formControlName="password" 
+
                 [toggleMask]="true" 
                 placeholder="Password"
                 required
               />
-              @if (passwordField.invalid && (passwordField.touched || passwordField.dirty)) {
+              @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched ) {
                 <p-message severity="error" size="small" variant="simple">
-                  @if (passwordField.hasError('required')) {
+                  @if (loginForm.get('password')?.hasError('required')) {
                       Password is Required.
                   }
                 </p-message>
@@ -112,59 +110,69 @@ import { Router } from '@angular/router';
   `
 })
 export class LoginComponent {
+  loginForm: FormGroup;
   name = '';
   password = '';
   isInvalid: any;
 
-  constructor(
-    private router: Router,
+    constructor(
+    private fb: FormBuilder,
     private messageService: MessageService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
   navigateToPath() {
     this.router.navigate(['/registration']);
   }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.authService.login(this.name, this.password).subscribe({
-        next: (res) => {
-          if (res.success) {
+    onSubmit() {
+      const formValue = this.loginForm.value;
+      
+
+      if (this.loginForm.valid) {
+        const payload = {
+          userName: formValue.userName,
+          password: formValue.password
+        };
+        
+        this.authService.login(payload).subscribe({
+          next: (res) => {
+            if (res.success) {
+              this.messageService.add({
+                severity: 'success',
+                summary: "Registration Successful",
+                detail: res.message || "User registered successfully",
+                life: 3000
+              });
+              this.loginForm.reset(); 
+            } else {
+              this.messageService.add({
+                severity: 'error',
+                summary: "Registration Failed",
+                detail: res.message || "An error occurred during registration",
+                life: 3000
+              });
+            }
+          },
+          error: (err) => {
+            console.error("API Error", err);
             this.messageService.add({
-              severity: 'success',
-              summary: "Login Successful",
-              detail: res.message || "User logged in successfully",
-              life: 3000
-            });
-            // Navigate to dashboard or home page after successful login
-            this.router.navigate(['/dashboard']); // adjust route as needed
-          } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: "Login Failed",
-              detail: res.message || "Invalid credentials",
+              severity: "error",
+              summary: "API Error",
+              detail: "Something went wrong please try again later",
               life: 3000
             });
           }
-        },
-        error: (err) => {
-          console.error("API Error", err);
-          this.messageService.add({
-            severity: "error",
-            summary: "API Error",
-            detail: "Something went wrong please try again later",
-            life: 3000
-          });
-        }
-      });
-    } else {
-      this.messageService.add({
-        severity: "warn",
-        summary: "Form Invalid",
-        detail: "Please fill in all required fields",
-        life: 3000
-      });
+        });
+      } else {
+        // Mark all fields as touched to show validation errors
+        this.loginForm.markAllAsTouched();
+      }
     }
-  }
 }
