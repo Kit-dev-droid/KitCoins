@@ -17,6 +17,18 @@ export interface RegisterResponse {
   token?: string;
 }
 
+export interface LoginRequest {
+  userName: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  success: boolean;
+  message: string;
+  userId?: string;
+  token?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,14 +57,14 @@ export class AuthService {
   }
 
   //login functionality 
-  login(email: string, password: string): Observable<any> {
+  login(userData: LoginRequest): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
     return this.http.post<any>(
       `${this.apiUrl}/login`,
-      { email, password },
+        userData, 
       { headers }
     );
   }

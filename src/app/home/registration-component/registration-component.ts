@@ -84,7 +84,7 @@ import { CommonModule } from '@angular/common';
           <div class="mb-6">
             <p-password 
               
-              registrationForm="password"
+              formControlName="password"
               [toggleMask]="true" 
               placeholder="Password"
               [invalid]="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched)" 
@@ -156,19 +156,13 @@ export class RegistrationComponent {
 
    visible: boolean = false;
 
-  // name = "";
-  // surname = "";
-  // email = "";
-  // password = "";
-  // confirmPass = "";
-  
+
  
-  
 
   onSubmit() {
 
   
-        const formValue = this.registrationForm.value;
+  const formValue = this.registrationForm.value;
   if (formValue.password !== formValue.confirmPassword) {
     this.messageService.add({ 
       severity: 'error', 
