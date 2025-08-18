@@ -36,9 +36,9 @@ export class MenuComponent implements OnInit {
          routerLink: `home`
       },
        {
-        label: `Features`,
+        label: `Dashboard`,
         icon: `pi pi-star`,
-        routerLink: `feature`
+        routerLink: `dashboard`
       },
        {
         label: `Contact`,

@@ -49,7 +49,7 @@ import { Router } from '@angular/router';
                  @if (loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched) {
                   <p-message severity="error" size="small" variant="simple">
                     @if (loginForm.get('userName')?.hasError('required')) {
-                        UserName is Required.
+                        Name is Required.
                     }
                   </p-message>
                 }

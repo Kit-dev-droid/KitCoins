@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-feature',
+  selector: 'app-dashboard',
   imports: [],
   template: `
     <p>
-      feature-component works!
+      dashboard-component works!
     </p>
   `,
   styles: ``
 })
-export class FeatureComponent {
+export class DashboardComponent {
 
 }
