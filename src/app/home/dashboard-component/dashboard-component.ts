@@ -3,39 +3,54 @@ import { CommonModule } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs';
 import { CoinGecko, CoinMarket } from '../services/coin-gecko';
-
+import { TableModule } from 'primeng/table';
+import { SelectModule } from 'primeng/select';
+import { TagModule } from 'primeng/tag';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputIconModule } from 'primeng/inputicon';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  imports: [TableModule, TagModule, IconFieldModule, InputTextModule, InputIconModule, MultiSelectModule, SelectModule, HttpClientModule, CommonModule],
   template: `
-    <h2>Crypto Prices (ZAR)</h2>
+    <p-table
+        #dt2
+        [value]="coins"
+        dataKey="id"
+        [rows]="10"
+        [paginator]="true"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [globalFilterFields]="['name', 'current_price', 'price_change_percentage_24h', 'market_cap']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+      >
+      
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Coin</th>
+          <th>Price</th>
+          <th>24h %</th>
+          <th>Market Cap</th>
+        </tr>
+      </ng-template>
 
-      <table >
-        <thead>
-          <tr>
-            <th>Coin</th>
-            <th>Price</th>
-            <th>24h %</th>
-            <th>Market Cap</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (item of coins; track item.id) {
-            <tr>
-              <td>
-                <img [src]="item.image" [alt]="item.name" width="20" height="20" />
-                {{ item.name }} ({{ item.symbol | uppercase }})
-              </td>
-              <td>\R{{ item.current_price | number:'1.2-2' }}</td>
-              <td [ngClass]="{'up': item.price_change_percentage_24h >= 0, 'down': item.price_change_percentage_24h < 0}">
-                {{ item.price_change_percentage_24h | number:'1.2-2' }}%
-              </td>
-              <td>\R{{ item.market_cap | number }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>
+            <img [src]="item.image" [alt]="item.name" width="20" height="20" />
+            {{ item.name }} ({{ item.symbol | uppercase }})
+          </td>
+          <td>\R{{ item.current_price | number: '1.2-2' }}</td>
+          <td [ngClass]="{ up: item.price_change_percentage_24h >= 0, down: item.price_change_percentage_24h < 0 }">
+            {{ item.price_change_percentage_24h | number: '1.2-2' }}%
+          </td>
+          <td>\R{{ item.market_cap | number }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
   `,
   styles: `table {
   width: 100%;
@@ -60,14 +75,21 @@ th, td {
 }`
 })
 export class DashboardComponent {
+  
   loading = true;
   error: string | null = null;
-  // coins!: Observable<CoinMarket[]>;
+
+
+ 
+
+
 
   constructor(private api: CoinGecko){}
 
   coins: CoinMarket[] = [];
   ngOnInit() {
+
+    //below is the api call
     this.api.getMarkets([], 'zar').subscribe({
       next: (data) => {
         this.coins = data;
@@ -79,7 +101,4 @@ export class DashboardComponent {
       }
     });
  }
-
-
-
 }
