@@ -37,8 +37,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
               </p-iconfield>
           </div>
       </ng-template>
-      
-      
+
       <ng-template pTemplate="header">
         <tr>
           <th>Coin</th>
@@ -88,27 +87,17 @@ import { MultiSelectModule } from 'primeng/multiselect';
     </p-table>
 
   `,
-  styles: `table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-th, td {
-  padding: 0.75rem;
-  border-bottom: 1px solid #e5e7eb;
-  text-align: left;
-}
-.error {
-  color: #b91c1c;
-}
-.up {
-  color: #16a34a;
-  font-weight: 600;
-}
-.down {
-  color: #dc2626;
-  font-weight: 600;
-}`
+  styles: `
+    .up {
+      color: #16a34a;
+      font-weight: 600;
+    }
+    .down {
+      color: #dc2626;
+      font-weight: 600;
+  }
+  
+  `
 })
 export class DashboardComponent {
   
