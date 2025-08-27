@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs';
 import { CoinGecko, CoinMarket } from '../services/coin-gecko';
-import { TableModule } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputIconModule } from 'primeng/inputicon';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { Button } from "primeng/button";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [TableModule, TagModule, IconFieldModule, InputTextModule, InputIconModule, MultiSelectModule, SelectModule, CommonModule],
+  imports: [TableModule, TagModule, IconFieldModule, InputTextModule, InputIconModule, MultiSelectModule, SelectModule, CommonModule, Button],
   template: `
-    <div style='padding:5px'><h2 style= "text-align:center;">KitCoins</h2> </div>
+    <div style='padding:5px'><h2 style= "text-align:center;">Coins</h2> </div>
     <p-table
         #dt2
+        #dt1
         [value]="coins"
         dataKey="id"
         [rows]="10"
@@ -27,9 +27,11 @@ import { MultiSelectModule } from 'primeng/multiselect';
         [globalFilterFields]="['name', 'current_price', 'price_change_percentage_24h', 'market_cap']"
         [tableStyle]="{ 'min-width': '75rem' }"
       >
+      
       <ng-template #caption>
           <div class="flex">
-              <p-iconfield iconPosition="left" class="ml-auto">
+            <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
+                <p-iconfield iconPosition="left" class="ml-auto">
                   <p-inputicon>
                       <i class="pi pi-search"></i>
                   </p-inputicon>
@@ -40,35 +42,31 @@ import { MultiSelectModule } from 'primeng/multiselect';
 
       <ng-template pTemplate="header">
         <tr>
-          <th>Coin</th>
-          <th>Price</th>
-          <th>24h %</th>
-          <th>Market Cap</th>
-        </tr>
-        <tr>
-          <th>
-            <p-columnFilter type="text" field="name" placeholder="Type to search" ariaLabel="Filter Name" filterOn="input" [showMenu]="false"></p-columnFilter>
+          <th pSortableColumn="name" style="width:20%">
+              <div class="flex items-center gap-2">
+                  Coin
+                  <p-sortIcon field="name" />
+              </div>
           </th>
-          <th>
-            <p-columnFilter type="text" field="current_price" placeholder="Type to search" ariaLabel="Filter Name" filterOn="input" [showMenu]="false"></p-columnFilter>
-            <ng-template #filter let-value let-filter="filterCallback">
-            <p-multiselect  placeholder="Any" (onChange)="filter($event.value)" optionLabel="name" style="min-width: 14rem" [panelStyle]="{ minWidth: '16rem' }">
-                  <ng-template let-option #item>
-                      <div class="flex items-center gap-2">
-                         
-                          <span>{{ option.name }}</span>
-                      </div>
-                  </ng-template>
-              </p-multiselect>
-              </ng-template>
+          <th pSortableColumn="current_price" style="width:20%">
+              <div class="flex items-center gap-2">
+                  Price
+                  <p-sortIcon field="current_price" />
+              </div>
           </th>
-          <th>
-            <p-columnFilter type="text" field="price_change_percentage_24h" placeholder="Type to search" ariaLabel="Filter Name" filterOn="input" [showMenu]="false"></p-columnFilter>
+          <th pSortableColumn="price_change_percentage_24h" style="width:20%">
+              <div class="flex items-center gap-2">
+                  24h %
+                  <p-sortIcon field="price_change_percentage_24h" />
+              </div>
           </th>
-          <th>
-            <p-columnFilter type="text" field="market_cap" placeholder="Type to search" ariaLabel="Filter Name" filterOn="input" [showMenu]="false"></p-columnFilter>
+          <th pSortableColumn="market_cap" style="width:20%">
+              <div class="flex items-center gap-2">
+                  Market Cap
+                  <p-sortIcon field="market_cap" />
+              </div>
           </th>
-        </tr>
+        </tr>  
       </ng-template>
 
       <ng-template pTemplate="body" let-item>
@@ -112,6 +110,8 @@ export class DashboardComponent {
   constructor(private api: CoinGecko){}
 
   coins: CoinMarket[] = [];
+  searchValue: string | undefined;
+
   ngOnInit() {
 
     //below is the api call
@@ -130,4 +130,8 @@ export class DashboardComponent {
   const input = event.target as HTMLInputElement;
   dt.filterGlobal(input.value, 'contains');
 }
+ clear(table: Table) {
+        table.clear();
+        this.searchValue = ''
+    }
 }
