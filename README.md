@@ -54,7 +54,8 @@ Login Form
 <img width="540" height="619" alt="image" src="https://github.com/user-attachments/assets/0267b91c-c8c8-47d1-a0f7-10f9fc3a55b7" />
 
 Registration Form
-![Uploading image.png…]()
+<img width="551" height="597" alt="image" src="https://github.com/user-attachments/assets/df2ee66a-a679-4897-9780-b46b70d26c03" />
+
 
 
 ---
