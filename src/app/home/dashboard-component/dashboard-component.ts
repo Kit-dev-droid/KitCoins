@@ -14,11 +14,12 @@ import { Button } from "primeng/button";
   selector: 'app-dashboard',
   imports: [TableModule, TagModule, IconFieldModule, InputTextModule, InputIconModule, MultiSelectModule, SelectModule, CommonModule, Button],
   template: `
-     <div class="min-h-screen p-4">
-       <div class="max-w-full " id='my-standout-modal'>
-      <!-- <div id='my-standout-modal' class="w-full max-w-md"> -->
+     <div class="min-h-screen p-4 ">
+       <div class="max-w-full rounded-xl" id='my-table-modal'>
+         <div class="p-8">
+      
     <p-table
-    class="w-full border"
+    class="w-full"
         #dt2
         #dt1
         [value]="coins"
@@ -87,6 +88,7 @@ import { Button } from "primeng/button";
       </ng-template>
     </p-table>
        </div>
+     </div>
      </div>
 
   `,

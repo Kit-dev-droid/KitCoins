@@ -17,6 +17,13 @@
    outline: 1px solid grey;
 }
 
+.my-app-dark #my-table-modal {
+   outline: 1px solid grey;
+  background-color:   #18181b;
+
+
+}
+
 
 .my-app-dark .p-dropdown {
   background-color: #1f2937 !important;

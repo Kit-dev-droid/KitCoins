@@ -13,7 +13,7 @@
 /*--------------dark mode theme has its own styles folder this folder is only for light mode styles----------------------*/
 
 
-#my-standout-modal {
+#my-standout-modal, #my-table-modal {
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
