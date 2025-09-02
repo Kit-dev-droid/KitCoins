@@ -59,10 +59,8 @@ import { Router } from '@angular/router';
             <div class="mb-8">
               <p-password 
                 class="login-password w-full"
-
                 [feedback]="false" 
                 formControlName="password" 
-
                 [toggleMask]="true" 
                 placeholder="Password"
                 required

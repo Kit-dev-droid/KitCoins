@@ -1,5 +1,5 @@
 /*primeNG text inputs*/
-.my-app-dark input[pInputText] {
+.my-app-dark input[pInputText],.my-app-dark textarea[pTextarea]  {
   background-color:  #1f2937 !important;
  
   border-color: #4b5563 !important;
