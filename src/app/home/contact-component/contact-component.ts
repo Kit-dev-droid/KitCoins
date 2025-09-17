@@ -20,33 +20,75 @@ import { ToastModule } from 'primeng/toast';
             <h3 class="text-2xl font-semibold">Lets Chat</h3>
           </div>
           <form [formGroup]="exampleForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+            <div class="flex flex-row">
+              <div class="flex flex-col gap-2 pr-5">
+                  <input 
+                  class="form-input w-full p-3 py-3 border border-gray-300 rounded bg-white  text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
+                  rows="5"
+                  cols="30"
+                    pInputText 
+                    id="name" 
+                    formControlName = "name"
+                    aria-describedby="name" 
+                    placeholder="Name" />
+                  @if (isInvalid('name')) {
+                      <p-message severity="error" size="small" variant="simple">Name is required</p-message>
+                  }
+              </div>
+              <div class="flex flex-col gap-2">
+                  <input 
+                  class="form-input w-full px-3 py-3 border border-gray-300 rounded bg-white  text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
+                  rows="5"
+                  cols="30"
+                    pInputText 
+                    id="surname" 
+                    formControlName = "surname"
+                    aria-describedby="surname" 
+                    placeholder="Surname" />
+                  @if (isInvalid('surname')) {
+                      <p-message severity="error" size="small" variant="simple">Surname is required</p-message>
+                  }
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+                <input 
+                class="form-input w-full px-3 py-3 border border-gray-300 rounded bg-white  text-gray-900 dark:text-gray-100 text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none"
+                rows="5"
+                cols="30"
+                  pInputText 
+                  id="email" 
+                  formControlName = "email"
+                  aria-describedby="email" 
+                  placeholder="Email" />
+                @if (isInvalid('email')) {
+                    <p-message severity="error" size="small" variant="simple">Email is required</p-message>
+                }
+            </div>
+
             <div class="flex flex-col gap-1">
-                <textarea 
+                <textarea
+                  class="w-full px-3 py-3 border border-gray-300 rounded-lg text-base transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 focus:outline-none bg-white text-gray-900" 
                   rows="5" 
                   cols="30" 
                   pTextarea 
                   formControlName="message" 
-                  [invalid]="isInvalid('message')" 
                   placeholder="Leave us a message">
                 </textarea>
                 @if (isInvalid('message')) {
-                    <p-message severity="error" size="small" variant="simple">message is required..</p-message>
+                    <p-message severity="error" size="small" variant="simple">Message is required</p-message>
                 }
             </div>
 
             <div class="flex-1">
               <p-button 
-                label="Register" 
-                type="button"
+                label="Send" 
+                type="submit"
                 [raised]="true" 
                 severity="info"
                 styleClass="w-full contact-button contact-info-button"
               />
             </div>
           </form>
-
-
-          
         </div>
       </div>
     </div>
@@ -63,7 +105,10 @@ export class ContactComponent {
     
     constructor(private fb: FormBuilder) {
         this.exampleForm = this.fb.group({
-            message: ['', Validators.required]
+            message: ['', Validators.required],
+            name: ['', Validators.required],
+            surname: ['', Validators.required],
+            email: ['', Validators.required,Validators.email]
         });
     }
 
