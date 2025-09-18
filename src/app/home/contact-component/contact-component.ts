@@ -5,6 +5,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { AuthService } from '../auth-services/auth-service';
 
 @Component({
   selector: 'app-contact',
@@ -19,7 +20,7 @@ import { ToastModule } from 'primeng/toast';
           <div class="text-center mb-8">
             <h3 class="text-2xl font-semibold">Lets Chat</h3>
           </div>
-          <form [formGroup]="exampleForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
             <div class="flex flex-row">
               <div class="flex flex-col gap-2 pr-5">
                   <input 
@@ -96,33 +97,80 @@ import { ToastModule } from 'primeng/toast';
   styles: ``
 })
 export class ContactComponent {
-  messageService = inject(MessageService);
+  // messageService = inject(MessageService);
    items: any[] | undefined;
+   name = '';
+   surname = '';
+   email = '';
+   message ='';
 
-    exampleForm: FormGroup;
+    contactForm: FormGroup;
 
     formSubmitted: boolean = false;
     
-    constructor(private fb: FormBuilder) {
-        this.exampleForm = this.fb.group({
+    constructor(
+      private fb: FormBuilder, 
+      private authService: AuthService,
+      private messageService: MessageService,) 
+      {
+      
+        this.contactForm = this.fb.group({
             message: ['', Validators.required],
             name: ['', Validators.required],
             surname: ['', Validators.required],
-            email: ['', Validators.required,Validators.email]
+            email: ['', [Validators.required,Validators.email]]
         });
-    }
+      }
 
-     onSubmit() {
-        this.formSubmitted = true;
-        if (this.exampleForm.valid) {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Form is submitted', life: 3000 });
-            this.exampleForm.reset();
-            this.formSubmitted = false;
-        }
+    onSubmit() {
+      const formValue = this.contactForm.value;
+      this.formSubmitted = true;
+
+      if (this.contactForm.valid) {
+        const payload = {
+          name: formValue.name,
+          surname: formValue.surname,
+          email: formValue.email,
+          message: formValue.message
+        };
+        
+        this.authService.contact(payload).subscribe({
+          next: (res) => {
+            if (res.success) {
+              this.messageService.add({
+                severity: 'success',
+                summary: "Registration Successful",
+                detail: res.message || "User registered successfully",
+                life: 3000
+              });
+              this.contactForm.reset(); 
+            } else {
+              this.messageService.add({
+                severity: 'error',
+                summary: "Registration Failed",
+                detail: res.message || "An error occurred during registration",
+                life: 3000
+              });
+            }
+          },
+          error: (err) => {
+            console.error("API Error", err);
+            this.messageService.add({
+              severity: "error",
+              summary: "API Error",
+              detail: "Something went wrong please try again later",
+              life: 3000
+            });
+          }
+        });
+      } else {
+        // Mark all fields as touched to show validation errors
+        this.contactForm.markAllAsTouched();
+      }
     }
 
     isInvalid(controlName: string) {
-        const control = this.exampleForm.get(controlName);
+        const control = this.contactForm.get(controlName);
         return control?.invalid && (control.touched || this.formSubmitted);
     }
 }

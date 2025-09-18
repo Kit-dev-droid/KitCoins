@@ -29,6 +29,13 @@ export interface LoginResponse {
   token?: string;
 }
 
+export interface contactRequest {
+  name: string;
+  surname: string;
+  email: string;
+  message: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -68,4 +75,16 @@ export class AuthService {
       { headers }
     );
   }
+
+  contact(userData:contactRequest): Observable<any> {
+     const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(
+      `${this.apiUrl}/contact.php`,
+        userData, 
+      { headers }
+    );
+  };
 }
