@@ -1,7 +1,15 @@
 # KitCoins
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
+A cryptocurrency dashboard built with  [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5, featuring authentication, API integration, and dynamic data tables.  
 
+
+## ⚙️ Installation & Setup
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/Kit-dev-droid/KitCoins.git
+   cd KitCoins
+   
 ## Development server
 
 To start a local development server, run:
@@ -10,50 +18,46 @@ To start a local development server, run:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Features
 
-```bash
-ng generate component component-name
-```
+- **User Authentication**
+  - Registration and login forms with Angular reactive form validation
+  - Error handling and form feedback
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **API Integration**
+  - Fetches real-time cryptocurrency data from a public API
+  - Displays results dynamically in the UI
 
-```bash
-ng generate --help
-```
+- **Data Tables**
+  - Searchable and sortable table
+  - Pagination and filtering logic applied to API data
 
-## Building
+---
 
-To build the project run:
+## 🛠️ Tech Stack
 
-```bash
-ng build
-```
+- **Frontend:** Angular v20, TypeScript  
+- **UI:** Angular Material / primeng / TailwindCSS
+- **State & Data:** RxJS, Angular Services, HTTPClient  
+- **Auth & Forms:** Angular Reactive Forms  
+- **Other:** HTML5, CSS3
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 📸 Screenshots
+Coin Table
+<img width="1913" height="907" alt="image" src="https://github.com/user-attachments/assets/97d3938a-3f56-48d2-83b0-889879f7d76d" />
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Login Form
+<img width="540" height="619" alt="image" src="https://github.com/user-attachments/assets/0267b91c-c8c8-47d1-a0f7-10f9fc3a55b7" />
 
-```bash
-ng test
-```
+Registration Form
+<img width="551" height="597" alt="image" src="https://github.com/user-attachments/assets/df2ee66a-a679-4897-9780-b46b70d26c03" />
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
